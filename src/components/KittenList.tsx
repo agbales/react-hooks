@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import KittenDetails from './KittenDetails';
 
 const Button = styled.button`
   background: transparent;
@@ -16,33 +17,23 @@ const Box = styled.div`
   text-align: left;
 `;
 
-const CatList = styled.div`
+const List = styled.div`
   margin: 50px;
-`;
-
-const CatProp = styled.span`
-  width: 50px;
-  color: palevioletred;
-  margin: 0 1em;
-  padding: 0.25em 1em;
-  text-align: left;
-  padding: 0;
 `;
 
 const KittenList = (props: any) => {
   return (
-    <CatList>
+    <List>
       {props.state.kittens.map((kitten: any, index: number) => (
         <Box key={index}>
           <img src={kitten.image} alt="profile pic" />
-          <CatProp>{kitten.name}</CatProp>
-          <CatProp>{kitten.age}</CatProp>
-          <CatProp>{kitten.toy}</CatProp>
-          <input onChange={e => props.updateCatName(e, index)} />
-          <Button onClick={e => props.removeCat(e, index)}>X</Button>
+          <KittenDetails detail={kitten.name} />
+          <KittenDetails detail={kitten.age} />
+          <KittenDetails detail={kitten.toy} />
+          <Button onClick={e => props.removeKitten(e, index)}>X</Button>
         </Box>
       ))}
-    </CatList>
+    </List>
   );
 };
 

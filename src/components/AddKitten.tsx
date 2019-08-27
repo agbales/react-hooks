@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const AddCatForm = styled.form`
+const AddKittenForm = styled.form`
   margin: 50px;
 `;
 
@@ -19,15 +19,15 @@ const Button = styled.button`
   margin-left: 5px;
 `;
 
-const AddCat = (props: any) => {
+const AddKitten = (props: any) => {
   return (
-    <AddCatForm id="addKitten" onSubmit={e => props.addCat(e)}>
+    <AddKittenForm id="addKitten" onSubmit={e => props.addKitten(e)}>
       <CatInput name="name" placeholder="name"></CatInput>
       <CatInput name="age" placeholder="age"></CatInput>
       <CatInput name="toy" placeholder="toy"></CatInput>
       <Button>+ Cat</Button>
-    </AddCatForm>
+    </AddKittenForm>
   );
 };
 
-export default AddCat;
+export default AddKitten;

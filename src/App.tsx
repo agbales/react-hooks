@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import AddCat from './components/AddCat';
+import AddKitten from './components/AddKitten';
 import KittenList from './components/KittenList';
 
 const App: React.FC = () => {
@@ -40,7 +40,7 @@ const App: React.FC = () => {
 
   const [state, setState] = useState(initialState);
 
-  const updateCatName = (e: any, index: number): void => {
+  const updateKittenName = (e: any, index: number): void => {
     const newName = e.target.value;
     let kittenArray = state.kittens;
     const updateKittenName = (kittenArray[index] = {
@@ -51,13 +51,13 @@ const App: React.FC = () => {
     setState({ ...state, kittens: kittenArray });
   };
 
-  const removeCat = (e: any, index: number): void => {
+  const removeKitten = (e: any, index: number): void => {
     let updatedKittens = state.kittens;
     updatedKittens.splice(index, 1);
     setState({ kittens: updatedKittens });
   };
 
-  const addCat = (e: any): void => {
+  const addKitten = (e: any): void => {
     e.preventDefault();
     const newKitten: Kitten = {
       name: e.target.name.value,
@@ -68,10 +68,10 @@ const App: React.FC = () => {
     let updatedKittens: Kitten[] = state.kittens;
     updatedKittens.push(newKitten);
     setState({ kittens: updatedKittens });
-    resetAddCatForm(e);
+    resetAddKittenForm(e);
   };
 
-  const resetAddCatForm = (e: any): void => {
+  const resetAddKittenForm = (e: any): void => {
     e.target.name.value = '';
     e.target.age.value = '';
     e.target.toy.value = '';
@@ -79,16 +79,12 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <AddCat addCat={addCat} />
+      <AddKitten addKitten={addKitten} />
       <KittenList
         state={state}
-        removeCat={removeCat}
-        updateCatName={updateCatName}
-      >
-        <div className="App">
-          <KittenList />
-        </div>
-      </KittenList>
+        removeKitten={removeKitten}
+        updateKittenName={updateKittenName}
+      />
     </div>
   );
 };
