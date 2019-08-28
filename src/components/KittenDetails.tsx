@@ -25,7 +25,12 @@ const CatProp = styled.span`
 const KittenDetails = (props: any) => {
   let detail = props.detail;
   const [isEditing, setIsEditing] = useState(false);
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(detail);
+
+  const doneEditing = (updatedValue: string): void => {
+    setValue(updatedValue);
+    toggleDetailEdit();
+  };
 
   const toggleDetailEdit = (): void => {
     isEditing ? setIsEditing(false) : setIsEditing(true);
@@ -34,7 +39,7 @@ const KittenDetails = (props: any) => {
   const DetailView = (): JSX.Element => {
     return (
       <div>
-        <span>{detail}</span>
+        <span>{value}</span>
         <Button onClick={() => toggleDetailEdit()}>Edit</Button>
       </div>
     );
@@ -42,7 +47,7 @@ const KittenDetails = (props: any) => {
 
   const KittenDisplay = (): JSX.Element => {
     if (isEditing) {
-      return <EditingView value={value} />;
+      return <EditingView value={value} doneEditing={doneEditing} />;
     } else {
       return <DetailView />;
     }
