@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import KittenDetails from './KittenDetails';
+import EditingView from './EditingView';
 
 const Box = styled.div`
   height: 100px;
@@ -32,6 +33,7 @@ const ProfilePic = styled.img`
 const Profile = (props: any): JSX.Element => {
   const { kitten, index, removeKitten } = props;
   const [isEditing, setIsEditing] = useState(false);
+  const [kittenDetails, setKittenDetails] = useState(kitten);
 
   const toggleDetailEdit = (): void => {
     setIsEditing(!isEditing);
@@ -39,12 +41,29 @@ const Profile = (props: any): JSX.Element => {
 
   const editButtonText = isEditing ? 'Done' : 'Edit';
 
+  const updateKittenDetails = (updatedState: any): void => {
+    console.log('UPDATE', updatedState);
+    setKittenDetails(updatedState);
+  };
+
+  const Display = (): JSX.Element => {
+    if (isEditing) {
+      return (
+        <EditingView
+          kittenDetails={kittenDetails}
+          setKittenDetails={updateKittenDetails}
+          index={index}
+        />
+      );
+    } else {
+      return <KittenDetails kitten={kittenDetails} />;
+    }
+  };
+
   return (
-    <Box key={index}>
-      <ProfilePic src={kitten.image} alt="profile pic" />
-      <KittenDetails detail={kitten.name} editing={isEditing} index={index} />
-      <KittenDetails detail={kitten.age} editing={isEditing} index={index} />
-      <KittenDetails detail={kitten.toy} editing={isEditing} index={index} />
+    <Box>
+      <ProfilePic src={kittenDetails.image} alt="profile pic" />
+      <Display />
       <Button onClick={() => toggleDetailEdit()}>{editButtonText}</Button>
       <Button onClick={e => removeKitten(e, index)}>X</Button>
     </Box>

@@ -14,6 +14,14 @@ const Button = styled.button`
   text-align: center;
 `;
 
+const Form = styled.form`
+  text-align: left;
+  margin: 0 auto;
+  color: black;
+  width: 50px;
+  display: inline;
+`;
+
 const Input = styled.input`
   width: 70px;
   margin: 0 1em;
@@ -21,17 +29,54 @@ const Input = styled.input`
   text-align: left;
 `;
 
+interface Kitten {
+  name: string;
+  age: number;
+  toy: string;
+  image: string;
+}
+
 const EditingView = (props: any) => {
-  const { index, value, setValue } = props;
+  const { kittenDetails, setKittenDetails, index } = props;
+  // const [kittenState, setKittenState] = useState(kitten);
+
+  const updateKittenState = (
+    e: any,
+    attribute: string,
+    updatedValue: string
+  ): void => {
+    e.preventDefault();
+    const updatedKitten = { ...kittenDetails, attribute: updatedValue };
+    setKittenDetails(updatedKitten);
+  };
+
+  // const handleSubmit = (e: any): Kitten => {
+  //   e.prventDefault();
+  //   return setKittenDetails(kittenState);
+  // };
 
   return (
-    <Input
-      key={index}
-      type="text"
-      name="edit-view"
-      value={value}
-      onChange={e => setValue(e.target.value)}
-    />
+    //onSubmit={handleSubmit}
+    <Form key={`form-${index}`}>
+      <Input
+        key={`name-${index}`}
+        type="text"
+        value={kittenDetails.name}
+        onChange={e => updateKittenState(e, kittenDetails.name, e.target.value)}
+      />
+      <Input
+        key={`age-${index}`}
+        type="text"
+        value={kittenDetails.age}
+        onChange={e => updateKittenState(e, kittenDetails.age, e.target.value)}
+      />
+      <Input
+        key={`toy-${index}`}
+        type="text"
+        value={kittenDetails.toy}
+        onChange={e => updateKittenState(e, kittenDetails.toy, e.target.value)}
+      />
+    </Form>
   );
 };
 

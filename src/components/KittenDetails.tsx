@@ -1,47 +1,29 @@
 import * as React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
-import EditingView from './EditingView';
 
-const CatProp = styled.span`
-  width: 100px;
-  color: palevioletred;
-  margin: 0 1em;
-  text-align: left;
-  padding: 0;
-  display: inline-block;
+const DetailsBox = styled.span`
+  margin: 25px;
 `;
 
 const ValueContainer = styled.span`
-  display: block;
+  display: inline-block;
   text-align: center;
   margin: 0 auto;
   color: black;
+  width: 50px;
+  margin-right: 50px;
 `;
 
 const KittenDetails = (props: any) => {
-  let { detail, editing, index } = props;
-  const [value, setValue] = useState(detail);
-
-  const Display = (): JSX.Element => {
-    if (editing) {
-      return (
-        <EditingView
-          key={index}
-          value={value}
-          setValue={setValue}
-          index={index}
-        />
-      );
-    } else {
-      return <ValueContainer>{value}</ValueContainer>;
-    }
-  };
+  let { kitten } = props;
 
   return (
-    <CatProp key={index}>
-      <Display />
-    </CatProp>
+    <DetailsBox>
+      <ValueContainer>{kitten.name}</ValueContainer>
+      <ValueContainer>{kitten.age}</ValueContainer>
+      <ValueContainer>{kitten.toy}</ValueContainer>
+    </DetailsBox>
   );
 };
 
