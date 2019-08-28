@@ -1,26 +1,12 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import EditingView from './EditingView';
-
-const Button = styled.button`
-  background: transparent;
-  border-radius: 3px;
-  border: 2px solid palevioletred;
-  color: palevioletred;
-  padding: 0.25em 1em;
-  margin-left: 5px;
-  display: block;
-  text-align: center;
-  margin: 10px auto;
-  text-align: center;
-`;
 
 const CatProp = styled.span`
   width: 100px;
   color: palevioletred;
   margin: 0 1em;
-  padding: 0.25em 1em;
   text-align: left;
   padding: 0;
   display: inline-block;
@@ -34,39 +20,27 @@ const ValueContainer = styled.span`
 `;
 
 const KittenDetails = (props: any) => {
-  let detail = props.detail;
-  const [isEditing, setIsEditing] = useState(false);
+  let { detail, editing, index } = props;
   const [value, setValue] = useState(detail);
 
-  const doneEditing = (updatedValue: string): void => {
-    setValue(updatedValue);
-    toggleDetailEdit();
-  };
-
-  const toggleDetailEdit = (): void => {
-    isEditing ? setIsEditing(false) : setIsEditing(true);
-  };
-
-  const DetailView = (): JSX.Element => {
-    return (
-      <div>
-        <ValueContainer>{value}</ValueContainer>
-        <Button onClick={() => toggleDetailEdit()}>Edit</Button>
-      </div>
-    );
-  };
-
-  const KittenDisplay = (): JSX.Element => {
-    if (isEditing) {
-      return <EditingView value={value} doneEditing={doneEditing} />;
+  const Display = (): JSX.Element => {
+    if (editing) {
+      return (
+        <EditingView
+          key={index}
+          value={value}
+          setValue={setValue}
+          index={index}
+        />
+      );
     } else {
-      return <DetailView />;
+      return <ValueContainer>{value}</ValueContainer>;
     }
   };
 
   return (
-    <CatProp>
-      <KittenDisplay />
+    <CatProp key={index}>
+      <Display />
     </CatProp>
   );
 };

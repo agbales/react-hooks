@@ -15,6 +15,8 @@ const AddKittenForm = styled.form`
 const CatInput = styled.input`
   margin: 5px;
   padding: 5px;
+  max-width: 120px;
+  font-size: 1.2rem;
 `;
 
 const Button = styled.button`
@@ -24,15 +26,16 @@ const Button = styled.button`
   color: palevioletred;
   padding: 0.25em 1em;
   margin-left: 5px;
+  font-size: 1.2rem;
 `;
 
 const AddKitten = (props: any) => {
   return (
     <Container>
       <AddKittenForm id="addKitten" onSubmit={e => props.addKitten(e)}>
-        <CatInput name="name" placeholder="name"></CatInput>
-        <CatInput name="age" placeholder="age"></CatInput>
-        <CatInput name="toy" placeholder="toy"></CatInput>
+        <CatInput name="name" placeholder="name" required></CatInput>
+        <CatInput name="age" placeholder="age" required></CatInput>
+        <CatInput name="toy" placeholder="toy" required></CatInput>
         <Button>+ Kitten</Button>
       </AddKittenForm>
     </Container>

@@ -7,10 +7,17 @@ const List = styled.div`
 `;
 
 const KittenList = (props: any) => {
+  const removeKitten = props.removeKitten;
+
   return (
     <List>
       {props.state.kittens.map((kitten: any, index: number) => (
-        <Profile key={index} kitten={kitten} index={index} />
+        <Profile
+          key={index}
+          kitten={kitten}
+          index={index}
+          removeKitten={removeKitten}
+        />
       ))}
     </List>
   );

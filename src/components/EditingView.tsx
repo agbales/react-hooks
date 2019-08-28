@@ -14,29 +14,24 @@ const Button = styled.button`
   text-align: center;
 `;
 
-const Input = styled.input``;
+const Input = styled.input`
+  width: 70px;
+  margin: 0 1em;
+  padding: 0.25em 1em;
+  text-align: left;
+`;
 
 const EditingView = (props: any) => {
-  const [value, setValue] = useState(props.value);
-
-  const handleSubmit = (evt: any) => {
-    evt.preventDefault();
-    props.doneEditing(value);
-  };
+  const { index, value, setValue } = props;
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        <Input
-          type="text"
-          value={value}
-          onChange={e => setValue(e.target.value)}
-        />
-      </label>
-      <Button type="submit" value="Submit">
-        Update
-      </Button>
-    </form>
+    <Input
+      key={index}
+      type="text"
+      name="edit-view"
+      value={value}
+      onChange={e => setValue(e.target.value)}
+    />
   );
 };
 

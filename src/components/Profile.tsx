@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import KittenDetails from './KittenDetails';
 
@@ -6,7 +7,7 @@ const Box = styled.div`
   height: 100px;
   margin: 10px;
   text-align: left;
-  width: 550px;
+  width: 600px;
   margin: 20px auto;
   padding: 40px;
   -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;
@@ -29,15 +30,23 @@ const ProfilePic = styled.img`
 `;
 
 const Profile = (props: any): JSX.Element => {
-  const { kitten, index } = props;
+  const { kitten, index, removeKitten } = props;
+  const [isEditing, setIsEditing] = useState(false);
+
+  const toggleDetailEdit = (): void => {
+    setIsEditing(!isEditing);
+  };
+
+  const editButtonText = isEditing ? 'Done' : 'Edit';
 
   return (
-    <Box>
+    <Box key={index}>
       <ProfilePic src={kitten.image} alt="profile pic" />
-      <KittenDetails detail={kitten.name} />
-      <KittenDetails detail={kitten.age} />
-      <KittenDetails detail={kitten.toy} />
-      <Button onClick={e => props.removeKitten(e, index)}>X</Button>
+      <KittenDetails detail={kitten.name} editing={isEditing} index={index} />
+      <KittenDetails detail={kitten.age} editing={isEditing} index={index} />
+      <KittenDetails detail={kitten.toy} editing={isEditing} index={index} />
+      <Button onClick={() => toggleDetailEdit()}>{editButtonText}</Button>
+      <Button onClick={e => removeKitten(e, index)}>X</Button>
     </Box>
   );
 };
