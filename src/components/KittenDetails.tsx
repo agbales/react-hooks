@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const Button = styled.button`
@@ -24,33 +24,39 @@ const CatProp = styled.span`
 const KittenDetails = (props: any) => {
   let detail = props.detail;
   const [isEditing, setIsEditing] = useState(false);
+  const [value, setValue] = useState(detail);
 
   const toggleDetailEdit = (): void => {
-    console.log('hit');
-    if (isEditing) {
-      setIsEditing(false);
-      console.log('editing false');
-    } else {
-      setIsEditing(true);
-      console.log('editing true');
-    }
+    isEditing ? setIsEditing(false) : setIsEditing(true);
+  };
+
+  const EditingView = (): JSX.Element => {
+    return (
+      <div>
+        <input
+          type="text"
+          value={value}
+          onChange={e => setValue(e.target.value)}
+        />
+        <Button onClick={() => toggleDetailEdit()}>Done</Button>
+      </div>
+    );
+  };
+
+  const DetailView = (): JSX.Element => {
+    return (
+      <div>
+        <span>{detail}</span>
+        <Button onClick={() => toggleDetailEdit()}>Edit</Button>
+      </div>
+    );
   };
 
   const KittenDisplay = (): JSX.Element => {
     if (isEditing) {
-      return (
-        <div>
-          <input value={detail} />
-          <Button onClick={() => toggleDetailEdit()}>Done</Button>
-        </div>
-      );
+      return <EditingView />;
     } else {
-      return (
-        <div>
-          <span>{detail}</span>
-          <Button onClick={() => toggleDetailEdit()}>Edit</Button>
-        </div>
-      );
+      return <DetailView />;
     }
   };
 
