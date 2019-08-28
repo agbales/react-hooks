@@ -1,18 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
 import styled from 'styled-components';
-
-const Button = styled.button`
-  background: transparent;
-  border-radius: 3px;
-  border: 2px solid palevioletred;
-  color: palevioletred;
-  padding: 0.25em 1em;
-  display: block;
-  text-align: center;
-  margin: 10px auto;
-  text-align: center;
-`;
 
 const Form = styled.form`
   text-align: left;
@@ -29,16 +16,8 @@ const Input = styled.input`
   text-align: left;
 `;
 
-interface Kitten {
-  name: string;
-  age: number;
-  toy: string;
-  image: string;
-}
-
 const EditingView = (props: any) => {
   const { kittenDetails, setKittenDetails, index } = props;
-  // const [kittenState, setKittenState] = useState(kitten);
 
   const updateKittenState = (
     e: any,
@@ -46,7 +25,7 @@ const EditingView = (props: any) => {
     updatedValue: string
   ): void => {
     e.preventDefault();
-    const updatedKitten = { ...kittenDetails, attribute: updatedValue };
+    const updatedKitten = { ...kittenDetails, [attribute]: updatedValue };
     setKittenDetails(updatedKitten);
   };
 
@@ -62,19 +41,19 @@ const EditingView = (props: any) => {
         key={`name-${index}`}
         type="text"
         value={kittenDetails.name}
-        onChange={e => updateKittenState(e, kittenDetails.name, e.target.value)}
+        onChange={e => updateKittenState(e, 'name', e.target.value)}
       />
       <Input
         key={`age-${index}`}
         type="text"
         value={kittenDetails.age}
-        onChange={e => updateKittenState(e, kittenDetails.age, e.target.value)}
+        onChange={e => updateKittenState(e, 'age', e.target.value)}
       />
       <Input
         key={`toy-${index}`}
         type="text"
         value={kittenDetails.toy}
-        onChange={e => updateKittenState(e, kittenDetails.toy, e.target.value)}
+        onChange={e => updateKittenState(e, 'toy', e.target.value)}
       />
     </Form>
   );
