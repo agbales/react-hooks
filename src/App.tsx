@@ -47,7 +47,6 @@ const App: React.FC = () => {
       ...kittenArray[index],
       name: newName
     });
-    console.log('STATE', state);
     setState({ ...state, kittens: kittenArray });
   };
 

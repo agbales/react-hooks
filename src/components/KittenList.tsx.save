@@ -1,0 +1,52 @@
+import * as React from 'react';
+import styled from 'styled-components';
+
+const Button = styled.button`
+  background: transparent;
+  border-radius: 3px;
+  border: 2px solid palevioletred;
+  color: palevioletred;
+  padding: 0.25em 1em;
+  margin-left: 5px;
+`;
+
+const Box = styled.div`
+  height: 50px;
+  width: 500px;
+  margin: 10px;
+  text-align: left;
+`;
+
+const CatProp = styled.span`
+  width: 50px;
+  color: palevioletred;
+  margin: 0 1em;
+  padding: 0.25em 1em;
+  text-align: left;
+  padding: 0;
+`;
+
+const KittenList = (props: any) => {
+  return (
+    <div>
+      <form onSubmit={e => props.addCat(e)}>
+        <input name="name" placeholder="name"></input>
+        <input name="age" placeholder="age"></input>
+        <input name="toy" placeholder="toy"></input>
+        <Button>+ Cat</Button>
+      </form>
+      {props.state.kittens.map((kitten: any, index: number) => (
+        <Box key={index}>
+          <CatProp>{kitten.name}</CatProp>
+          <CatProp>{kitten.age}</CatProp>
+          <CatProp>{kitten.toy}</CatProp>
+          <input onChange={e => props.updateCatName(e, index)} />
+          <Button onClick={e => props.removeCat(e, index)}>X</Button>
+        </Box>
+      ))}
+    </div>
+  );
+};
+
+export default KittenList;
+ç

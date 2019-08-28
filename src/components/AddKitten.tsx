@@ -25,7 +25,7 @@ const AddKitten = (props: any) => {
       <CatInput name="name" placeholder="name"></CatInput>
       <CatInput name="age" placeholder="age"></CatInput>
       <CatInput name="toy" placeholder="toy"></CatInput>
-      <Button>+ Cat</Button>
+      <Button>+ Kitten</Button>
     </AddKittenForm>
   );
 };
