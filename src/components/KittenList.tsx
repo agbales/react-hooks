@@ -27,12 +27,17 @@ const List = styled.div`
   margin: 50px;
 `;
 
+const ProfilePic = styled.img`
+  height: 100px;
+  width: 100px;
+`;
+
 const KittenList = (props: any) => {
   return (
     <List>
       {props.state.kittens.map((kitten: any, index: number) => (
         <Box key={index}>
-          <img src={kitten.image} alt="profile pic" />
+          <ProfilePic src={kitten.image} alt="profile pic" />
           <KittenDetails detail={kitten.name} />
           <KittenDetails detail={kitten.age} />
           <KittenDetails detail={kitten.toy} />

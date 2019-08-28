@@ -21,7 +21,7 @@ const App: React.FC = () => {
         name: 'Catler',
         age: 2,
         toy: 'feather',
-        image: 'https://placekitten.com/100/100'
+        image: 'https://live.staticflickr.com/4127/5012570728_2000a77565_b.jpg'
       },
       {
         name: 'Patches',
@@ -33,7 +33,8 @@ const App: React.FC = () => {
         name: 'Rolly',
         age: 2,
         toy: 'ball',
-        image: 'https://placekitten.com/100/100'
+        image:
+          'https://render.fineartamerica.com/images/rendered/default/poster/10/8/break/images-medium-5/kitten-square-dog-photography.jpg'
       }
     ]
   };
