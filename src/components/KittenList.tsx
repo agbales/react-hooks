@@ -15,6 +15,12 @@ const Box = styled.div`
   height: 100px;
   margin: 10px;
   text-align: left;
+  width: 550px;
+  margin: 20px auto;
+  padding: 40px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;
 `;
 
 const List = styled.div`

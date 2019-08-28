@@ -8,8 +8,13 @@ const Button = styled.button`
   border: 2px solid palevioletred;
   color: palevioletred;
   padding: 0.25em 1em;
-  margin-left: 5px;
+  display: block;
+  text-align: center;
+  margin: 10px auto;
+  text-align: center;
 `;
+
+const Input = styled.input``;
 
 const EditingView = (props: any) => {
   const [value, setValue] = useState(props.value);
@@ -22,7 +27,7 @@ const EditingView = (props: any) => {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        <input
+        <Input
           type="text"
           value={value}
           onChange={e => setValue(e.target.value)}

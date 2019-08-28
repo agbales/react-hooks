@@ -1,8 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const AddKittenForm = styled.form`
+const Container = styled.div`
   margin: 50px;
+`;
+
+const AddKittenForm = styled.form`
+  margin: 10px;
+  text-align: left;
+  width: 550px;
+  margin: 20px auto;
 `;
 
 const CatInput = styled.input`
@@ -21,12 +28,14 @@ const Button = styled.button`
 
 const AddKitten = (props: any) => {
   return (
-    <AddKittenForm id="addKitten" onSubmit={e => props.addKitten(e)}>
-      <CatInput name="name" placeholder="name"></CatInput>
-      <CatInput name="age" placeholder="age"></CatInput>
-      <CatInput name="toy" placeholder="toy"></CatInput>
-      <Button>+ Kitten</Button>
-    </AddKittenForm>
+    <Container>
+      <AddKittenForm id="addKitten" onSubmit={e => props.addKitten(e)}>
+        <CatInput name="name" placeholder="name"></CatInput>
+        <CatInput name="age" placeholder="age"></CatInput>
+        <CatInput name="toy" placeholder="toy"></CatInput>
+        <Button>+ Kitten</Button>
+      </AddKittenForm>
+    </Container>
   );
 };
 

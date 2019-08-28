@@ -10,6 +10,10 @@ const Button = styled.button`
   color: palevioletred;
   padding: 0.25em 1em;
   margin-left: 5px;
+  display: block;
+  text-align: center;
+  margin: 10px auto;
+  text-align: center;
 `;
 
 const CatProp = styled.span`
@@ -20,6 +24,13 @@ const CatProp = styled.span`
   text-align: left;
   padding: 0;
   display: inline-block;
+`;
+
+const ValueContainer = styled.span`
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  color: black;
 `;
 
 const KittenDetails = (props: any) => {
@@ -39,7 +50,7 @@ const KittenDetails = (props: any) => {
   const DetailView = (): JSX.Element => {
     return (
       <div>
-        <span>{value}</span>
+        <ValueContainer>{value}</ValueContainer>
         <Button onClick={() => toggleDetailEdit()}>Edit</Button>
       </div>
     );
