@@ -16,7 +16,6 @@ const EditingView = (props: any) => {
 
   const handleSubmit = (evt: any) => {
     evt.preventDefault();
-    console.log('returning: ', value);
     props.doneEditing(value);
   };
 
