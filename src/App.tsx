@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import AddKitten from './components/AddKitten';
 import KittenList from './components/KittenList';
+// import console = require('console');
 
 const App: React.FC = () => {
   interface KittenState {
@@ -39,6 +40,12 @@ const App: React.FC = () => {
     ]
   };
 
+  let profilePicArray: string[] = [
+    'https://t2.ea.ltmcdn.com/en/images/7/8/8/how_to_train_a_kitten_887_600.jpg',
+    'https://cdn.shopify.com/s/files/1/2529/5140/products/retro-rainbow-kitten-diamond-painting-kit-ytg-official-store-30x30cm-12x12-in-square_1024x1024.jpg?v=1557776517',
+    'https://www.papercards.com/images/avanti/36045-got-milk-kitten-gift-card-holder.jpg'
+  ];
+
   const [state, setState] = useState(initialState);
 
   const updateKittenName = (e: any, index: number): void => {
@@ -57,13 +64,22 @@ const App: React.FC = () => {
     setState({ kittens: updatedKittens });
   };
 
+  const selectProfilePic = (): string => {
+    const getRandomInt = (max: number): number => {
+      return Math.floor(Math.random() * Math.floor(max));
+    };
+
+    const url: any = profilePicArray[getRandomInt(3)];
+    return url;
+  };
+
   const addKitten = (e: any): void => {
     e.preventDefault();
     const newKitten: Kitten = {
       name: e.target.name.value,
       age: e.target.age.value,
       toy: e.target.toy.value,
-      image: 'https://placekitten.com/100/100'
+      image: selectProfilePic()
     };
     let updatedKittens: Kitten[] = state.kittens;
     updatedKittens.push(newKitten);
